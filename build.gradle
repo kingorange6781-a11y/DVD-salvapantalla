@@ -2,7 +2,6 @@ plugins {
     id 'com.android.application' version '8.1.0' apply false
 }
 
-// Configuración moderna de repositorios compatible con Gradle 8+
 allprojects {
     repositories {
         google()

@@ -9,12 +9,8 @@ public class DvdScreensaverService extends DreamService {
     @Override
     public void onAttachedToWindow() {
         super.onAttachedToWindow();
-        
-        // Configurar para que sea interactivo a la pantalla completa y sin interrupciones
         setInteractive(false);
         setFullscreen(true);
-
-        // Instanciar y colocar nuestra vista personalizada del rebote
         dvdView = new DvdView(this);
         setContentView(dvdView);
     }

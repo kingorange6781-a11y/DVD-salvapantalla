@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
-    {/* Indicar que es una aplicación para Android TV */}
     <uses-feature
         android:name="android.software.leanback"
         android:required="false" />
@@ -17,7 +16,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
 
-        {/* Servicio de Salvapantallas (DreamService) */}
         <service
             android:name=".DvdScreensaverService"
             android:exported="true"
@@ -31,7 +29,6 @@
                 android:resource="@xml/dream" />
         </service>
 
-        {/* Actividad principal por si el usuario abre la app desde el menú */}
         <activity
             android:name=".DvdScreensaverService"
             android:exported="true">

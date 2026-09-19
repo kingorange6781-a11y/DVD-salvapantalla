@@ -17,9 +17,9 @@ import java.util.Random;
 public class DvdView extends View {
 
     private float posX = 100f, posY = 100f;
-    private float velX = 4f, velY = 4f; // Velocidad del logo
-    private final int rectWidth = 350;  // Ancho del logo en pantalla (puedes ajustarlo)
-    private final int rectHeight = 175; // Alto del logo en pantalla (puedes ajustarlo)
+    private float velX = 4f, velY = 4f;
+    private final int rectWidth = 350;
+    private final int rectHeight = 175;
     
     private final Paint paint;
     private Bitmap dvdBitmap;
@@ -30,7 +30,7 @@ public class DvdView extends View {
 
     private final int[] colors = {
         Color.RED, Color.GREEN, Color.BLUE, Color.YELLOW, 
-        Color.CYAN, Color.MAGENTA, Color.WHITE, Color.rgb(255, 165, 0) // Naranja
+        Color.CYAN, Color.MAGENTA, Color.WHITE, Color.rgb(255, 165, 0)
     };
 
     public DvdView(Context context) {
@@ -39,7 +39,6 @@ public class DvdView extends View {
         random = new Random();
         currentColor = colors[random.nextInt(colors.length)];
 
-        // Cargar la imagen desde res/drawable/dvd.png y escalarla al tamaño deseado
         Bitmap rawBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.dvd);
         if (rawBitmap != null) {
             dvdBitmap = Bitmap.createScaledBitmap(rawBitmap, rectWidth, rectHeight, true);
@@ -50,8 +49,8 @@ public class DvdView extends View {
             @Override
             public void run() {
                 updatePosition();
-                invalidate(); // Redibujar en cada frame
-                handler.postDelayed(this, 16); // ~60 FPS
+                invalidate();
+                handler.postDelayed(this, 16);
             }
         };
     }
@@ -75,7 +74,6 @@ public class DvdView extends View {
 
         boolean hitWall = false;
 
-        // Rebote en Eje X (Izquierda / Derecha)
         if (posX <= 0) {
             posX = 0;
             velX = -velX;
@@ -86,7 +84,6 @@ public class DvdView extends View {
             hitWall = true;
         }
 
-        // Rebote en Eje Y (Arriba / Abajo)
         if (posY <= 0) {
             posY = 0;
             velY = -velY;
@@ -97,7 +94,6 @@ public class DvdView extends View {
             hitWall = true;
         }
 
-        // Si choca, cambiar de color aleatoriamente (evitando repetir el mismo color consecutivo)
         if (hitWall) {
             int newColor;
             do {
@@ -110,12 +106,9 @@ public class DvdView extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-
-        // Fondo negro puro (ideal para televisiones OLED/LED)
         canvas.drawColor(Color.BLACK);
 
         if (dvdBitmap != null) {
-            // Aplicar el filtro de color para que el logo cambie de color al chocar
             paint.setColorFilter(new PorterDuffColorFilter(currentColor, PorterDuff.Mode.SRC_IN));
             canvas.drawBitmap(dvdBitmap, posX, posY, paint);
         }
