@@ -20,11 +20,15 @@ jobs:
         distribution: 'temurin'
         java-version: '17'
 
-    - name: Generar gradlew si no existe
+    - name: Corregir nombres de carpetas (Mayúsculas/Minúsculas)
       run: |
-        if [ ! -f "gradlew" ]; then
-          gradle wrapper
+        # Si por error existe una carpeta con 'A' mayúscula, la renombramos a 'app'
+        if [ -d "App" ]; then
+          mv App app
         fi
+
+    - name: Generar envoltorio de Gradle
+      run: gradle wrapper --gradle-version 8.5
 
     - name: Dar permisos de ejecución a Gradle
       run: chmod +x gradlew
