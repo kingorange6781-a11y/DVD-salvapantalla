@@ -1,0 +1,153 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.tuusuario.dvdscreensaver"
+4    android:versionCode="1"
+5    android:versionName="1.0" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="21"
+9        android:targetSdkVersion="34" />
+10
+11    <uses-feature
+11-->/workspaces/DVD-salvapantalla/app/src/main/AndroidManifest.xml:4:5-6:36
+12        android:name="android.software.leanback"
+12-->/workspaces/DVD-salvapantalla/app/src/main/AndroidManifest.xml:5:9-49
+13        android:required="false" />
+13-->/workspaces/DVD-salvapantalla/app/src/main/AndroidManifest.xml:6:9-33
+14    <uses-feature
+14-->/workspaces/DVD-salvapantalla/app/src/main/AndroidManifest.xml:7:5-9:36
+15        android:name="android.hardware.touchscreen"
+15-->/workspaces/DVD-salvapantalla/app/src/main/AndroidManifest.xml:8:9-52
+16        android:required="false" />
+16-->/workspaces/DVD-salvapantalla/app/src/main/AndroidManifest.xml:9:9-33
+17
+18    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+18-->/workspaces/DVD-salvapantalla/app/src/main/AndroidManifest.xml:11:5-73
+18-->/workspaces/DVD-salvapantalla/app/src/main/AndroidManifest.xml:11:22-70
+19
+20    <permission
+20-->[androidx.core:core:1.9.0] /home/codespace/.gradle/caches/transforms-3/cf89ab1ea7cc19352d4f47103c74320d/transformed/core-1.9.0/AndroidManifest.xml:22:5-24:47
+21        android:name="com.tuusuario.dvdscreensaver.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
+21-->[androidx.core:core:1.9.0] /home/codespace/.gradle/caches/transforms-3/cf89ab1ea7cc19352d4f47103c74320d/transformed/core-1.9.0/AndroidManifest.xml:23:9-81
+22        android:protectionLevel="signature" />
+22-->[androidx.core:core:1.9.0] /home/codespace/.gradle/caches/transforms-3/cf89ab1ea7cc19352d4f47103c74320d/transformed/core-1.9.0/AndroidManifest.xml:24:9-44
+23
+24    <uses-permission android:name="com.tuusuario.dvdscreensaver.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
+24-->[androidx.core:core:1.9.0] /home/codespace/.gradle/caches/transforms-3/cf89ab1ea7cc19352d4f47103c74320d/transformed/core-1.9.0/AndroidManifest.xml:26:5-97
+24-->[androidx.core:core:1.9.0] /home/codespace/.gradle/caches/transforms-3/cf89ab1ea7cc19352d4f47103c74320d/transformed/core-1.9.0/AndroidManifest.xml:26:22-94
+25
+26    <application
+26-->/workspaces/DVD-salvapantalla/app/src/main/AndroidManifest.xml:13:5-58:19
+27        android:allowBackup="true"
+27-->/workspaces/DVD-salvapantalla/app/src/main/AndroidManifest.xml:14:9-35
+28        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+28-->[androidx.core:core:1.9.0] /home/codespace/.gradle/caches/transforms-3/cf89ab1ea7cc19352d4f47103c74320d/transformed/core-1.9.0/AndroidManifest.xml:28:18-86
+29        android:debuggable="true"
+30        android:extractNativeLibs="true"
+31        android:icon="@mipmap/ic_launcher"
+31-->/workspaces/DVD-salvapantalla/app/src/main/AndroidManifest.xml:15:9-43
+32        android:label="@string/app_name"
+32-->/workspaces/DVD-salvapantalla/app/src/main/AndroidManifest.xml:16:9-41
+33        android:supportsRtl="true"
+33-->/workspaces/DVD-salvapantalla/app/src/main/AndroidManifest.xml:17:9-35
+34        android:theme="@style/Theme.Dvdscreensaver" >
+34-->/workspaces/DVD-salvapantalla/app/src/main/AndroidManifest.xml:18:9-52
+35
+36        <!-- Menú Principal -->
+37        <activity
+37-->/workspaces/DVD-salvapantalla/app/src/main/AndroidManifest.xml:21:9-30:20
+38            android:name="com.tuusuario.dvdscreensaver.MainActivity"
+38-->/workspaces/DVD-salvapantalla/app/src/main/AndroidManifest.xml:22:13-41
+39            android:exported="true"
+39-->/workspaces/DVD-salvapantalla/app/src/main/AndroidManifest.xml:23:13-36
+40            android:theme="@style/Theme.Dvdscreensaver" >
+40-->/workspaces/DVD-salvapantalla/app/src/main/AndroidManifest.xml:24:13-56
+41            <intent-filter>
+41-->/workspaces/DVD-salvapantalla/app/src/main/AndroidManifest.xml:25:13-29:29
+42                <action android:name="android.intent.action.MAIN" />
+42-->/workspaces/DVD-salvapantalla/app/src/main/AndroidManifest.xml:26:17-69
+42-->/workspaces/DVD-salvapantalla/app/src/main/AndroidManifest.xml:26:25-66
+43
+44                <category android:name="android.intent.category.LAUNCHER" />
+44-->/workspaces/DVD-salvapantalla/app/src/main/AndroidManifest.xml:27:17-77
+44-->/workspaces/DVD-salvapantalla/app/src/main/AndroidManifest.xml:27:27-74
+45                <category android:name="android.intent.category.LEANBACK_LAUNCHER" />
+45-->/workspaces/DVD-salvapantalla/app/src/main/AndroidManifest.xml:28:17-86
+45-->/workspaces/DVD-salvapantalla/app/src/main/AndroidManifest.xml:28:27-83
+46            </intent-filter>
+47        </activity>
+48
+49        <!-- Salvapantallas -->
+50        <service
+50-->/workspaces/DVD-salvapantalla/app/src/main/AndroidManifest.xml:33:9-44:19
+51            android:name="com.tuusuario.dvdscreensaver.DvdScreensaverService"
+51-->/workspaces/DVD-salvapantalla/app/src/main/AndroidManifest.xml:34:13-50
+52            android:exported="true"
+52-->/workspaces/DVD-salvapantalla/app/src/main/AndroidManifest.xml:35:13-36
+53            android:permission="android.permission.BIND_DREAM_SERVICE" >
+53-->/workspaces/DVD-salvapantalla/app/src/main/AndroidManifest.xml:36:13-71
+54            <intent-filter>
+54-->/workspaces/DVD-salvapantalla/app/src/main/AndroidManifest.xml:37:13-40:29
+55                <action android:name="android.service.dreams.DreamService" />
+55-->/workspaces/DVD-salvapantalla/app/src/main/AndroidManifest.xml:38:17-78
+55-->/workspaces/DVD-salvapantalla/app/src/main/AndroidManifest.xml:38:25-75
+56
+57                <category android:name="android.intent.category.DEFAULT" />
+57-->/workspaces/DVD-salvapantalla/app/src/main/AndroidManifest.xml:39:17-76
+57-->/workspaces/DVD-salvapantalla/app/src/main/AndroidManifest.xml:39:27-73
+58            </intent-filter>
+59
+60            <meta-data
+60-->/workspaces/DVD-salvapantalla/app/src/main/AndroidManifest.xml:41:13-43:49
+61                android:name="android.service.dreams"
+61-->/workspaces/DVD-salvapantalla/app/src/main/AndroidManifest.xml:42:17-54
+62                android:resource="@xml/dream" />
+62-->/workspaces/DVD-salvapantalla/app/src/main/AndroidManifest.xml:43:17-46
+63        </service>
+64        <service
+64-->/workspaces/DVD-salvapantalla/app/src/main/AndroidManifest.xml:46:9-56:19
+65            android:name="com.tuusuario.dvdscreensaver.VibeSaverAccessibilityService"
+65-->/workspaces/DVD-salvapantalla/app/src/main/AndroidManifest.xml:47:13-58
+66            android:exported="true"
+66-->/workspaces/DVD-salvapantalla/app/src/main/AndroidManifest.xml:48:13-36
+67            android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE" >
+67-->/workspaces/DVD-salvapantalla/app/src/main/AndroidManifest.xml:49:13-79
+68            <intent-filter>
+68-->/workspaces/DVD-salvapantalla/app/src/main/AndroidManifest.xml:50:13-52:29
+69                <action android:name="android.accessibilityservice.AccessibilityService" />
+69-->/workspaces/DVD-salvapantalla/app/src/main/AndroidManifest.xml:51:17-92
+69-->/workspaces/DVD-salvapantalla/app/src/main/AndroidManifest.xml:51:25-89
+70            </intent-filter>
+71
+72            <meta-data
+72-->/workspaces/DVD-salvapantalla/app/src/main/AndroidManifest.xml:53:13-55:72
+73                android:name="android.accessibilityservice"
+73-->/workspaces/DVD-salvapantalla/app/src/main/AndroidManifest.xml:54:17-60
+74                android:resource="@xml/accessibility_service_config" />
+74-->/workspaces/DVD-salvapantalla/app/src/main/AndroidManifest.xml:55:17-69
+75        </service>
+76
+77        <provider
+77-->[androidx.emoji2:emoji2:1.2.0] /home/codespace/.gradle/caches/transforms-3/acd7b7be712c1ada299bcfc81b726076/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:24:9-32:20
+78            android:name="androidx.startup.InitializationProvider"
+78-->[androidx.emoji2:emoji2:1.2.0] /home/codespace/.gradle/caches/transforms-3/acd7b7be712c1ada299bcfc81b726076/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:25:13-67
+79            android:authorities="com.tuusuario.dvdscreensaver.androidx-startup"
+79-->[androidx.emoji2:emoji2:1.2.0] /home/codespace/.gradle/caches/transforms-3/acd7b7be712c1ada299bcfc81b726076/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:26:13-68
+80            android:exported="false" >
+80-->[androidx.emoji2:emoji2:1.2.0] /home/codespace/.gradle/caches/transforms-3/acd7b7be712c1ada299bcfc81b726076/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:27:13-37
+81            <meta-data
+81-->[androidx.emoji2:emoji2:1.2.0] /home/codespace/.gradle/caches/transforms-3/acd7b7be712c1ada299bcfc81b726076/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:29:13-31:52
+82                android:name="androidx.emoji2.text.EmojiCompatInitializer"
+82-->[androidx.emoji2:emoji2:1.2.0] /home/codespace/.gradle/caches/transforms-3/acd7b7be712c1ada299bcfc81b726076/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:30:17-75
+83                android:value="androidx.startup" />
+83-->[androidx.emoji2:emoji2:1.2.0] /home/codespace/.gradle/caches/transforms-3/acd7b7be712c1ada299bcfc81b726076/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:31:17-49
+84            <meta-data
+84-->[androidx.lifecycle:lifecycle-process:2.4.1] /home/codespace/.gradle/caches/transforms-3/2f569bc5cc97ee66011fd77f4e8c57ec/transformed/jetified-lifecycle-process-2.4.1/AndroidManifest.xml:31:13-33:52
+85                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+85-->[androidx.lifecycle:lifecycle-process:2.4.1] /home/codespace/.gradle/caches/transforms-3/2f569bc5cc97ee66011fd77f4e8c57ec/transformed/jetified-lifecycle-process-2.4.1/AndroidManifest.xml:32:17-78
+86                android:value="androidx.startup" />
+86-->[androidx.lifecycle:lifecycle-process:2.4.1] /home/codespace/.gradle/caches/transforms-3/2f569bc5cc97ee66011fd77f4e8c57ec/transformed/jetified-lifecycle-process-2.4.1/AndroidManifest.xml:33:17-49
+87        </provider>
+88    </application>
+89
+90</manifest>

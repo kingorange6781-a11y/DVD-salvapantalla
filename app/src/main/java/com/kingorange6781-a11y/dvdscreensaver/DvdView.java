@@ -1,6 +1,7 @@
 package com.tuusuario.dvdscreensaver;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -16,20 +17,25 @@ import java.util.Random;
 
 public class DvdView extends View {
 
-    private static final float MIN_SPEED = 2f;
-    private static final float MAX_SPEED = 18f;
-    private static final int MIN_BRIGHTNESS = 25;
-    private static final int MAX_BRIGHTNESS = 100;
+    private static final float MIN_SPEED = 1.5f;
+    private static final float MAX_SPEED = 12f;
+    private static final int MIN_DARKNESS = 0;
+    private static final int MAX_DARKNESS = 80;
+    private static final float BASE_RECT_WIDTH = 350f;
+    private static final float BASE_RECT_HEIGHT = 175f;
 
     private float posX = 100f, posY = 100f;
     private float velX = 4f, velY = 4f;
-    private final int rectWidth = 350;
-    private final int rectHeight = 175;
+    private int rectWidth = 350;
+    private int rectHeight = 175;
+    private float sizeScale = 1f;
+    private float speedScale = 1f;
 
     private final Paint paint;
+    private final Paint overlayPaint;
     private Bitmap dvdBitmap;
     private int currentColor;
-    private int brightness = MAX_BRIGHTNESS;
+    private int darkness = MAX_DARKNESS;
     private final Handler handler;
     private final Runnable runnable;
     private final Random random;
@@ -42,8 +48,18 @@ public class DvdView extends View {
     public DvdView(Context context) {
         super(context);
         paint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        overlayPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        overlayPaint.setColor(Color.BLACK);
         random = new Random();
         currentColor = colors[random.nextInt(colors.length)];
+
+        SharedPreferences prefs = context.getSharedPreferences("dvd_settings", Context.MODE_PRIVATE);
+        sizeScale = clampScale(prefs.getFloat("size_scale", 1f));
+        speedScale = clampSpeed(prefs.getFloat("speed_scale", 1f));
+        darkness = clampDarkness(prefs.getInt("darkness", MAX_DARKNESS));
+
+        applySize(sizeScale);
+        applySpeed(speedScale);
 
         Bitmap rawBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.dvd);
         if (rawBitmap != null) {
@@ -69,23 +85,31 @@ public class DvdView extends View {
         handler.removeCallbacks(runnable);
     }
 
-    public void setBrightness(int value) {
-        brightness = clampBrightness(value);
+    public void setDarkness(int value) {
+        darkness = clampDarkness(value);
         invalidate();
     }
 
-    public int getBrightness() {
-        return brightness;
+    public int getDarkness() {
+        return darkness;
     }
 
-    public void adjustBrightness(int delta) {
-        setBrightness(brightness + delta);
+    public void adjustDarkness(int delta) {
+        setDarkness(darkness + delta);
+    }
+
+    public void setSizeScale(float scale) {
+        sizeScale = clampScale(scale);
+        applySize(sizeScale);
+    }
+
+    public void setSpeedScale(float scale) {
+        speedScale = clampSpeed(scale);
+        applySpeed(speedScale);
     }
 
     public void adjustSpeed(float delta) {
-        float nextSpeed = Math.max(MIN_SPEED, Math.min(MAX_SPEED, Math.abs(velX) + delta));
-        velX = Math.copySign(nextSpeed, velX == 0 ? 4f : velX);
-        velY = Math.copySign(nextSpeed, velY == 0 ? 4f : velY);
+        setSpeedScale(speedScale + delta);
     }
 
     public void toggleColor() {
@@ -96,8 +120,43 @@ public class DvdView extends View {
         currentColor = newColor;
     }
 
-    private int clampBrightness(int value) {
-        return Math.max(MIN_BRIGHTNESS, Math.min(MAX_BRIGHTNESS, value));
+    private void applySize(float scale) {
+        rectWidth = Math.round(BASE_RECT_WIDTH * scale);
+        rectHeight = Math.round(BASE_RECT_HEIGHT * scale);
+        if (dvdBitmap != null) {
+            dvdBitmap = Bitmap.createScaledBitmap(
+                    BitmapFactory.decodeResource(getResources(), R.drawable.dvd),
+                    rectWidth,
+                    rectHeight,
+                    true
+            );
+        }
+        invalidate();
+    }
+
+    private void applySpeed(float scale) {
+        float magnitude = 4f * scale;
+        if (magnitude < MIN_SPEED) {
+            magnitude = MIN_SPEED;
+        }
+        if (magnitude > MAX_SPEED) {
+            magnitude = MAX_SPEED;
+        }
+
+        velX = Math.copySign(magnitude, velX == 0 ? 1f : velX);
+        velY = Math.copySign(magnitude, velY == 0 ? 1f : velY);
+    }
+
+    private float clampScale(float value) {
+        return Math.max(0.4f, Math.min(2.2f, value));
+    }
+
+    private float clampSpeed(float value) {
+        return Math.max(0.5f, Math.min(2.5f, value));
+    }
+
+    private int clampDarkness(int value) {
+        return Math.max(MIN_DARKNESS, Math.min(MAX_DARKNESS, value));
     }
 
     private void updatePosition() {
@@ -141,8 +200,11 @@ public class DvdView extends View {
         super.onDraw(canvas);
         canvas.drawColor(Color.BLACK);
 
+        overlayPaint.setAlpha((int) ((darkness / 100f) * 255f));
+        canvas.drawRect(0, 0, getWidth(), getHeight(), overlayPaint);
+
         if (dvdBitmap != null) {
-            paint.setAlpha((int) (255 * (brightness / 100f)));
+            paint.setAlpha(255);
             paint.setColorFilter(new PorterDuffColorFilter(currentColor, PorterDuff.Mode.SRC_IN));
             canvas.drawBitmap(dvdBitmap, posX, posY, paint);
         }

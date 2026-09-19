@@ -1,0 +1,22 @@
+R_DEF: Internal format may change without notice
+local
+color black
+color white
+drawable dvd
+id darknessBar
+id darknessValue
+id openSettingsButton
+id orientationButton
+id remapButton
+id sizeBar
+id sizeValue
+id speedBar
+id speedValue
+id startDreamButton
+id titleText
+layout activity_main
+mipmap ic_launcher
+string app_name
+style Theme.Dvdscreensaver
+xml accessibility_service_config
+xml dream

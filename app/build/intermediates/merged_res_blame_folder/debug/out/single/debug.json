@@ -1,0 +1,26 @@
+[
+    {
+        "merged": "/home/codespace/.gradle/daemon/8.5/com.tuusuario.dvdscreensaver.app-merged_res-20:/xml_dream.xml.flat",
+        "source": "/home/codespace/.gradle/daemon/8.5/com.tuusuario.dvdscreensaver.app-main-22:/xml/dream.xml"
+    },
+    {
+        "merged": "/home/codespace/.gradle/daemon/8.5/com.tuusuario.dvdscreensaver.app-merged_res-20:/drawable_dvd.png.flat",
+        "source": "/home/codespace/.gradle/daemon/8.5/com.tuusuario.dvdscreensaver.app-main-22:/drawable/dvd.png"
+    },
+    {
+        "merged": "/home/codespace/.gradle/daemon/8.5/com.tuusuario.dvdscreensaver.app-merged_res-20:/mipmap-xhdpi_ic_launcher.png.flat",
+        "source": "/home/codespace/.gradle/daemon/8.5/com.tuusuario.dvdscreensaver.app-main-22:/mipmap-xhdpi/ic_launcher.png"
+    },
+    {
+        "merged": "/home/codespace/.gradle/daemon/8.5/com.tuusuario.dvdscreensaver.app-merged_res-20:/xml_accessibility_service_config.xml.flat",
+        "source": "/home/codespace/.gradle/daemon/8.5/com.tuusuario.dvdscreensaver.app-main-22:/xml/accessibility_service_config.xml"
+    },
+    {
+        "merged": "/home/codespace/.gradle/daemon/8.5/com.tuusuario.dvdscreensaver.app-merged_res-20:/layout_activity_main.xml.flat",
+        "source": "/home/codespace/.gradle/daemon/8.5/com.tuusuario.dvdscreensaver.app-main-22:/layout/activity_main.xml"
+    },
+    {
+        "merged": "com.tuusuario.dvdscreensaver.app-merged_res-20:/layout_activity_main.xml.flat",
+        "source": "com.tuusuario.dvdscreensaver.app-main-22:/layout/activity_main.xml"
+    }
+]

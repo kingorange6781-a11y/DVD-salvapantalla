@@ -13,7 +13,7 @@ public class DvdScreensaverService extends DreamService {
         setInteractive(false);
         setFullscreen(true);
         dvdView = new DvdView(this);
-        dvdView.setBrightness(100);
+        dvdView.setDarkness(80);
         setContentView(dvdView);
     }
 
@@ -50,12 +50,12 @@ public class DvdScreensaverService extends DreamService {
         switch (event.getKeyCode()) {
             case KeyEvent.KEYCODE_DPAD_LEFT:
                 if (dvdView != null) {
-                    dvdView.adjustBrightness(-10);
+                    dvdView.adjustDarkness(-10);
                 }
                 return true;
             case KeyEvent.KEYCODE_DPAD_RIGHT:
                 if (dvdView != null) {
-                    dvdView.adjustBrightness(10);
+                    dvdView.adjustDarkness(10);
                 }
                 return true;
             case KeyEvent.KEYCODE_DPAD_UP:
