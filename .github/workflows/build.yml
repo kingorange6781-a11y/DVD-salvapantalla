@@ -15,7 +15,7 @@ jobs:
       uses: actions/checkout@v4
 
     - name: Configurar JDK 17
-      uses: actions/setup-java@v4
+      uses: actions/setup-java@v5   # <-- Actualizado a v5
       with:
         distribution: 'temurin'
         java-version: '17'
@@ -24,8 +24,9 @@ jobs:
       uses: gradle/actions/setup-gradle@v3
       with:
         gradle-version: '8.5'
+        cache-disabled: true        # <-- Desactivamos el caché para evitar los errores 400 de GitHub
 
-    - name: Compilar APK Debug (Usando gradle directo)
+    - name: Compilar APK Debug
       run: gradle assembleDebug
 
     - name: Subir APK como artefacto
