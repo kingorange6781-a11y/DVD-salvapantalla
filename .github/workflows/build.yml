@@ -2,7 +2,7 @@ name: Build Android APK
 
 on:
   push:
-    branches: [ "main", "master" ]
+    branches: [ "main", "master", "actualizacion-de-mi-codigo" ]
   pull_request:
     branches: [ "main", "master" ]
 
@@ -19,6 +19,12 @@ jobs:
       with:
         distribution: 'temurin'
         java-version: '17'
+
+    - name: Generar gradlew si no existe
+      run: |
+        if [ ! -f "gradlew" ]; then
+          gradle wrapper
+        fi
 
     - name: Dar permisos de ejecución a Gradle
       run: chmod +x gradlew
