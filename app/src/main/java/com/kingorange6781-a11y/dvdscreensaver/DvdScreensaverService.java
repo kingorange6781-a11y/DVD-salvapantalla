@@ -1,6 +1,7 @@
 package com.tuusuario.dvdscreensaver;
 
 import android.service.dreams.DreamService;
+import android.view.KeyEvent;
 
 public class DvdScreensaverService extends DreamService {
 
@@ -12,6 +13,7 @@ public class DvdScreensaverService extends DreamService {
         setInteractive(false);
         setFullscreen(true);
         dvdView = new DvdView(this);
+        dvdView.setBrightness(100);
         setContentView(dvdView);
     }
 
@@ -36,6 +38,47 @@ public class DvdScreensaverService extends DreamService {
         super.onDreamingStopped();
         if (dvdView != null) {
             dvdView.stopAnimation();
+        }
+    }
+
+    @Override
+    public boolean dispatchKeyEvent(KeyEvent event) {
+        if (event.getAction() != KeyEvent.ACTION_DOWN) {
+            return super.dispatchKeyEvent(event);
+        }
+
+        switch (event.getKeyCode()) {
+            case KeyEvent.KEYCODE_DPAD_LEFT:
+                if (dvdView != null) {
+                    dvdView.adjustBrightness(-10);
+                }
+                return true;
+            case KeyEvent.KEYCODE_DPAD_RIGHT:
+                if (dvdView != null) {
+                    dvdView.adjustBrightness(10);
+                }
+                return true;
+            case KeyEvent.KEYCODE_DPAD_UP:
+                if (dvdView != null) {
+                    dvdView.adjustSpeed(1f);
+                }
+                return true;
+            case KeyEvent.KEYCODE_DPAD_DOWN:
+                if (dvdView != null) {
+                    dvdView.adjustSpeed(-1f);
+                }
+                return true;
+            case KeyEvent.KEYCODE_ENTER:
+            case KeyEvent.KEYCODE_DPAD_CENTER:
+                if (dvdView != null) {
+                    dvdView.toggleColor();
+                }
+                return true;
+            case KeyEvent.KEYCODE_BACK:
+                finish();
+                return true;
+            default:
+                return super.dispatchKeyEvent(event);
         }
     }
 }
